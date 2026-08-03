@@ -3,7 +3,7 @@ title: CIMDEV AI 编程 II 期项目索引
 type: project-index
 status: draft
 created: 2026-07-29
-updated: 2026-07-30
+updated: 2026-08-04
 sensitivity: internal
 sources:
   - 用户提供的 CIMDEV AI 编程 II 期项目规划书
@@ -26,6 +26,8 @@ sources:
 - [[01 需求与决策/系统知识库首期业务验证实施方案|单项目完整流程验证实施方案]]：一个项目、一套知识库、需求到交付全流程对照验证和推广前证据要求
 - [[02 架构与实现/cx-aicode 与 Workspace 代码实施方案|cx-aicode 与 Workspace 代码实施方案]]：具体开发工作包、工具契约、Skill改造、测试、Sprint和开工输入
 - [[02 架构与实现/cx-aicode 旧版本源码核验记录|cx-aicode 旧版本源码核验记录]]：OpenCode插件形态、Code Review真实链路、Agent权限、usage-api边界和Workspace推荐接入点
+- [[01 需求与决策/测试 Agent 技术基座与分阶段覆盖决策|测试 Agent 技术基座与分阶段覆盖决策]]：采用 CimiCode + GLM-5.1，首期 Java/Vue，C++/VB 后续专项 PoC
+- [[02 架构与实现/测试 Agent 技术方案|测试 Agent 技术方案]]：独立 Test Agent、三类测试流水线、知识联动、实施周期、验证标准与风险
 
 ## 版本历史
 
@@ -42,6 +44,7 @@ sources:
 - cx-aicode旧版本源码已核验：它是OpenCode工程流程插件，process Skill负责编排，主代理执行工具调用，只读reviewer负责判断，Node.js usage-api负责统计。
 - 建设范围按系统分批，业务流程不分期：先完成一个项目、一个知识库、一个通用问答APP、一个统一知识工具和cx-aicode从需求到交付完整流程；知识维护Agent延后到完整流程价值验证之后。
 - 未开始实施，未完成任何系统知识录入或 cx-aicode 改造。
+- 测试 Agent 已确认技术基座与分阶段覆盖方向，但仍处于方案阶段，尚未开始开发、PoC 或验收。
 
 ## 下一步
 

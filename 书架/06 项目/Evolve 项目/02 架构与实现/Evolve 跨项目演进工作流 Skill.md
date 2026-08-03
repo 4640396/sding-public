@@ -3,7 +3,7 @@ title: Evolve 跨项目演进工作流 Skill
 type: implementation-note
 status: verified
 created: 2026-07-16
-updated: 2026-07-25
+updated: 2026-08-02
 sensitivity: internal
 project: Evolve 项目
 project_id: evolve
@@ -16,6 +16,7 @@ sources:
   - "[[2026-07-17 Project Evolve Skill 规则完善与验收记录]]"
   - "[[2026-07-17 Evolve 知识落点约束与验收记录]]"
   - "[[2026-07-17 Graphify 外部缓存迁移与 Evolve 规则改造验收记录]]"
+  - "[[2026-08-02 Evolve 设计优先流程改造与验收记录]]"
 ---
 
 # Evolve 跨项目演进工作流 Skill
@@ -28,7 +29,7 @@ sources:
 - Graphify 只在代码关系确实影响判断时辅助发现架构、依赖、调用链和影响范围。
 - Evolve 负责识别生命周期位置、授权边界和下一步动作，不改变事实来源与安全规则。
 
-当前规则版本为 `2026-07-17.5`，主规则位于 `.agents/skills/evolve/SKILL.md`。
+当前规则版本为 `2026-08-02.3`，主规则位于 `.agents/skills/evolve/SKILL.md`。
 
 ## 七步生命周期
 
@@ -66,6 +67,25 @@ sources:
 - 未验证项和剩余风险。
 
 验证记录包含环境、命令或操作、结果、未执行原因和源码版本。优先使用 Git commit；没有可用 Git 历史时使用关键文件哈希。
+
+## 界面改造的设计优先分支
+
+当需求会改变页面信息架构、关键路径、布局层级、视觉语言或多个区域之间的关系时，Evolve 将“设计确认”作为实施门禁：
+
+1. 进入 Product Design 路由，加载最小上下文并运行、截图真实页面；用户明确要求评估时使用 `$product-design:audit`。
+2. 使用 `$product-design:ideate` 出图；没有明确视觉方向时默认生成恰好 3 张独立效果图，用户覆盖数量时按其要求。
+3. 用户选定方案后再实施；“直接改”或一般性代选委托不能跳过 Product Design 的选图门禁。若用户喜欢不同方案的部分，先融合成一个统一效果图并再次确认。
+4. 把确认稿转为结构化 Figma：没有文件时使用 `$figma-create-new-file`，再以 `$figma-generate-design` 和 `$figma-use` 建立 Auto Layout、组件或实例、变量、样式、必要断点与关键状态。扁平图片节点不算完成。
+5. 记录并确认 Figma 文件 URL、`fileKey` 和目标 `nodeId`，将该节点设为开发阶段唯一设计源。
+6. 使用 `$figma-design-to-code` 的 `get_design_context` 从确认节点实施，再以 `$design-qa` 对照 Figma 验收。
+
+效果图属于设计决策证据，不表示功能已经实现。它必须服从真实业务、数据与安全边界，不得为了画面完整而虚构产品能力。纯文案、单个样式值、明确的小组件修复，或已有确认稿的任务，可以跳过多方案探索，但不能跳过真实页面验证。
+
+真实页面、参考素材和出图工具可用时直接开始设计，不额外询问“是否先出图”；需要用户确认的是最终视觉目标，而不是是否启动设计工作。
+
+Product Design 或 Figma 不可用、无权限或前置检查失败时必须明确报告。未经用户同意，不使用普通截图、纯文字设计或扁平图片节点冒充结构化 Figma 输出；同意降级后才可回退到 `$product-design:image-to-code`，并标记设计源与视觉验证边界。
+
+Figma 是外部设计工件，默认位于用户选择的计划或 Drafts，不等同于本地 `.fig` 文件。Vault 只记录设计节点链接、身份、决策和验收证据，不复制整份设计。
 
 ## Graphify 与外部资料
 
